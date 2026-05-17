@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patricia Fierro — Digital Portfolio · Graphic &amp; Web Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #ffffff;
+      --ink:    #0a0a0a;
+      --mid:    #777777;
+      --soft:   #f5f5f3;
+      --border: #dededd;
+      --sand:   #c9a87c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      height: 52px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-logo svg {
+      height: 32px;
+      width: auto;
+      fill: var(--ink);
+      transition: fill 0.2s;
+    }
+
+    .nav-logo:hover svg { fill: var(--sand); }
+
+    .nav-logo-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-left: 10px;
+      border-left: 1px solid var(--border);
+      margin-left: 10px;
+      transition: color 0.2s;
+    }
+
+    .nav-logo:hover .nav-logo-name { color: var(--sand); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.2s;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+
+    .nav-mobile a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.4rem, 9vw, 4rem);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+
+    .nav-mobile a:hover { color: var(--sand); }
+
+    .nav-mobile-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      padding-top: 52px;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-meta span {
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .hero-title-block {
+      padding: 40px 48px 36px;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(72px, 12vw, 160px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--mid);
+    }
+
+    .hero-subtitle {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .hero-collage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      min-height: 380px;
+    }
+
+    .hero-collage .cell-1 { grid-row: 1 / 3; }
+    .hero-collage .cell { overflow: hidden; }
+    .hero-collage .cell img {
+      transition: transform 0.6s ease;
+    }
+    .hero-collage .cell:hover img { transform: scale(1.03); }
+
+    /* ══════════════════════════════════════════
+       SUMMARY / INDEX
+    ══════════════════════════════════════════ */
+    #summary {
+      padding: 80px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sum-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 48px;
+    }
+
+    .sum-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .sum-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      padding-right: 24px;
+    }
+
+    .sum-item:hover { background: var(--soft); }
+
+    .sum-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+      width: 56px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .sum-thumb {
+      width: 64px;
+      height: 44px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: var(--soft);
+    }
+
+    .sum-thumb img { object-fit: cover; }
+
+    .sum-text { flex: 1; }
+
+    .sum-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sum-sub {
+      font-size: 0.7rem;
+      color: var(--mid);
+      margin-top: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .sum-arrow {
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .sum-item:hover .sum-arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ══════════════════════════════════════════
+       SECTION BASE
+    ══════════════════════════════════════════ */
+    .section-wrap {
+      padding: 80px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .project-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+
+    .project-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 6rem;
+      font-weight: 900;
+      color: var(--soft);
+      line-height: 1;
+      margin-bottom: -12px;
+    }
+
+    .project-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+
+    .section-desc {
+      max-width: 340px;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--mid);
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════════
+       ABOUT / INTRO
+    ══════════════════════════════════════════ */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2px;
+      min-height: 500px;
+    }
+
+    .about-img-block {
+      position: relative;
+      overflow: hidden;
+      background: var(--soft);
+      min-height: 400px;
+    }
+
+    .about-img-block img { height: 100%; }
+
+    .about-intro-label {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      background: rgba(0,0,0,0.5);
+      padding: 6px 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .about-text-block {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--soft);
+    }
+
+    .about-text-block p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #444;
+      margin-bottom: 18px;
+    }
+
+    .about-text-block p:last-of-type { margin-bottom: 0; }
+
+    .about-skills {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+    }
+
+    /* ══════════════════════════════════════════
+       LOGOS GRID
+    ══════════════════════════════════════════ */
+    .logos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .logo-cell {
+      aspect-ratio: 4/3;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .logo-cell img {
+      object-fit: contain;
+      padding: 24px;
+      transition: transform 0.4s;
+    }
+
+    .logo-cell:hover img { transform: scale(1.06); }
+
+    /* ══════════════════════════════════════════
+       SOCIAL MEDIA GRID
+    ══════════════════════════════════════════ */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 2px;
+    }
+
+    .social-grid .span2 {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .social-cell {
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .social-cell.span2 { aspect-ratio: unset; }
+
+    .social-cell img { transition: transform 0.4s; }
+    .social-cell:hover img { transform: scale(1.04); }
+
+    /* ══════════════════════════════════════════
+       INFOGRAPHICS GRID
+    ══════════════════════════════════════════ */
+    .infog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .infog-cell {
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .infog-cell img { transition: transform 0.4s; }
+    .infog-cell:hover img { transform: scale(1.04); }
+
+    /* ══════════════════════════════════════════
+       WEB DESIGN
+    ══════════════════════════════════════════ */
+    .web-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+
+    .web-cell {
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16/7;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .web-cell img { object-fit: cover; transition: transform 0.4s; }
+    .web-cell:hover img { transform: scale(1.02); }
+
+    /* ══════════════════════════════════════════
+       REELS & VIDEO
+    ══════════════════════════════════════════ */
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .reel-cell {
+      aspect-ratio: 9/16;
+      background: var(--ink);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .reel-cell video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reel-play-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.2s;
+    }
+
+    .reel-cell:hover .reel-play-icon { background: rgba(0,0,0,0.1); }
+
+    /* Main video strip */
+    .main-video-wrap {
+      margin-bottom: 2px;
+      aspect-ratio: 16/7;
+      background: var(--ink);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-label {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ══════════════════════════════════════════
+       CATALOGS
+    ══════════════════════════════════════════ */
+    .catalogs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .catalog-card {
+      background: var(--soft);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+
+    .catalog-card:hover { background: var(--ink); }
+    .catalog-card:hover .cat-name { color: var(--bg); }
+    .catalog-card:hover .cat-type { color: rgba(255,255,255,0.5); }
+    .catalog-card:hover .cat-icon { opacity: 1; }
+
+    .cat-icon {
+      width: 40px;
+      height: 40px;
+      opacity: 0.3;
+      margin-bottom: 24px;
+      transition: opacity 0.2s;
+    }
+
+    .cat-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .cat-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 6px;
+      transition: color 0.2s;
+    }
+
+    .cat-arrow {
+      margin-top: 20px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════════ */
+    #contact {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 80px 48px;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    #contact .project-num { color: rgba(255,255,255,0.05); }
+    #contact .project-title { color: var(--bg); }
+    #contact .project-label { color: rgba(255,255,255,0.4); }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 8px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+
+    .contact-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .contact-val {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 8px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .form-field label {
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.9);
+      resize: none;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .btn-send {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      color: var(--ink);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding: 16px 28px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-send:hover { background: var(--sand); color: var(--bg); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name svg {
+      height: 24px;
+      width: auto;
+      fill: rgba(255,255,255,0.4);
+    }
+
+    .footer-mid {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-socials a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .footer-socials a:hover { border-color: var(--sand); background: var(--sand); }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0,0,0,0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open { opacity: 1; pointer-events: all; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      cursor: default;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .lb-close:hover { color: #fff; }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: rgba(255,255,255,0.6);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .lb-nav:hover { background: rgba(255,255,255,0.18); color: #fff; }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero-meta,
+      .hero-title-block { padding: 12px 24px; }
+      .hero-collage { grid-template-columns: 1fr 1fr; grid-template-rows: auto; min-height: 260px; }
+      .hero-collage .cell-1 { grid-row: unset; grid-column: span 2; aspect-ratio: 16/7; }
+
+      #summary { padding: 60px 24px; }
+      .sum-grid { grid-template-columns: 1fr; }
+      .sum-num { font-size: 1.8rem; width: 40px; }
+
+      .section-wrap { padding: 60px 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .section-desc { text-align: left; }
+
+      #about .about-grid { grid-template-columns: 1fr; }
+      .about-img-block { min-height: 300px; }
+      .about-text-block { padding: 32px 24px; }
+
+      .logos-grid { grid-template-columns: repeat(3, 1fr); }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-grid .span2 { grid-column: unset; grid-row: unset; aspect-ratio: 1; }
+      .infog-grid { grid-template-columns: repeat(2, 1fr); }
+      .reels-grid { grid-template-columns: repeat(2, 1fr); }
+      .catalogs-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-title { font-size: clamp(52px, 14vw, 88px); }
+      .logos-grid { grid-template-columns: repeat(2, 1fr); }
+      .infog-grid { grid-template-columns: 1fr 1fr; }
+      .reels-grid { grid-template-columns: 1fr 1fr; }
+      .catalogs-grid { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      #contact { padding: 60px 20px; }
+      .hero-meta, .hero-title-block { padding: 10px 18px; }
+      .section-wrap { padding: 48px 18px; }
+      #summary { padding: 48px 18px; }
+      footer { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav>
+  <a href="#hero" class="nav-logo" aria-label="Patricia Fierro — Home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 171 165">
+      <path d="M23.97,147.35V36.23s104.74,18.15,109.76,21.06c5.02,2.92,8.88,6.91,11.58,11.99,2.7,5.08,4.05,10.86,4.05,17.33s-1.35,12.42-4.05,17.49c-2.7,5.08-6.53,9.07-11.5,11.99-4.96,2.91-10.96,4.37-17.98,4.37l-77.6-16.69v43.57h-14.26ZM38.23,91.46l74.52,16.69c7.24,0,12.75-1.96,16.52-5.91,3.78-3.94,5.67-9.1,5.67-15.47,0-4.32-.89-8.1-2.67-11.34-1.78-3.24-4.32-5.77-7.61-7.61-3.3-1.84-86.43-15.22-86.43-15.22v38.86Z"/>
+      <path d="M23.97,147.35V36.23l110.96-28.23v14.16l-96.71,26.22v36.77l65.43-20.55v12.15l-65.43,20.55v50.05h-14.26Z"/>
+    </svg>
+    <span class="nav-logo-name">Patricia Fierro</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Intro</a></li>
+    <li><a href="#logos">Logos</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#infographics">Infographics</a></li>
+    <li><a href="#web">Web</a></li>
+    <li><a href="#reels">Reels</a></li>
+    <li><a href="#catalogs">Catalogs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+  <a href="#about" class="nav-ml">Intro</a>
+  <div class="nav-mobile-rule"></div>
+  <a href="#logos" class="nav-ml">Logos</a>
+  <div class="nav-mobile-rule"></div>
+  <a href="#social" class="nav-ml">Social Media</a>
+  <div class="nav-mobile-rule"></div>
+  <a href="#web" class="nav-ml">Web</a>
+  <div class="nav-mobile-rule"></div>
+  <a href="#reels" class="nav-ml">Reels</a>
+  <div class="nav-mobile-rule"></div>
+  <a href="#contact" class="nav-ml">Contact</a>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="hero">
+  <div class="hero-meta">
+    <span>2025</span>
+    <span>Digital Portfolio / Presentation</span>
+    <span>Patricia Fierro</span>
+  </div>
+
+  <div class="hero-title-block">
+    <h1 class="hero-title">DIGITAL<br/><em>PORT</em>FOLIO.</h1>
+    <p class="hero-subtitle">Graphic &amp; Web Designer · Buenos Aires, Argentina</p>
+  </div>
+
+  <div class="hero-collage">
+    <div class="cell cell-1">
+      <img src="logos/bambini.jpg" alt="Portfolio work"/>
+    </div>
+    <div class="cell">
+      <img src="logos/cafe%20bar%20soul.jpg" alt="Portfolio work"/>
+    </div>
+    <div class="cell">
+      <img src="logos/mg%20sonido.jpg" alt="Portfolio work"/>
+    </div>
+    <div class="cell">
+      <img src="logos/fresh%20and%20cold.jpg" alt="Portfolio work"/>
+    </div>
+    <div class="cell">
+      <img src="web%20design/web%20design.jpg" alt="Portfolio work"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SUMMARY ═══════════════════ -->
+<section id="summary">
+  <p class="sum-label">Summary</p>
+  <div class="sum-grid">
+
+    <a href="#about" class="sum-item">
+      <span class="sum-num">01</span>
+      <div class="sum-thumb"><img src="logos/nacho.jpg" alt=""/></div>
+      <div class="sum-text">
+        <div class="sum-title">Introduction</div>
+        <div class="sum-sub">About me · Professional profile</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#logos" class="sum-item">
+      <span class="sum-num">02</span>
+      <div class="sum-thumb"><img src="logos/CINEMARKETER.png" alt=""/></div>
+      <div class="sum-text">
+        <div class="sum-title">Logos &amp; Branding</div>
+        <div class="sum-sub">Visual identity · 14 projects</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#social" class="sum-item">
+      <span class="sum-num">03</span>
+      <div class="sum-thumb"><img src="social%20media%20posts/redes%20sociales%20pack%201.png" alt=""/></div>
+      <div class="sum-text">
+        <div class="sum-title">Social Media</div>
+        <div class="sum-sub">Posts · Digital content</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#infographics" class="sum-item">
+      <span class="sum-num">04</span>
+      <div class="sum-thumb"><img src="infopraphics/Infograf%C3%ADa%20GUSHMI.A.jpg" alt=""/></div>
+      <div class="sum-text">
+        <div class="sum-title">Infographics</div>
+        <div class="sum-sub">Data visualization · 7 pieces</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#web" class="sum-item">
+      <span class="sum-num">05</span>
+      <div class="sum-thumb"><img src="web%20design/web%20design.jpg" alt=""/></div>
+      <div class="sum-text">
+        <div class="sum-title">Web Design</div>
+        <div class="sum-sub">UI · Landing pages · Web design</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#reels" class="sum-item">
+      <span class="sum-num">06</span>
+      <div class="sum-thumb" style="background:#111;"></div>
+      <div class="sum-text">
+        <div class="sum-title">Reels &amp; Video</div>
+        <div class="sum-sub">Short-form · Motion · CapCut</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a href="#catalogs" class="sum-item">
+      <span class="sum-num">07</span>
+      <div class="sum-thumb" style="background:#e8e8e6; display:flex; align-items:center; justify-content:center;">
+        <svg width="22" height="26" viewBox="0 0 22 26" fill="none"><rect x="1" y="1" width="16" height="24" rx="1" stroke="#aaa" stroke-width="1.2"/><path d="M5 7h8M5 11h8M5 15h5" stroke="#aaa" stroke-width="1.2" stroke-linecap="round"/><path d="M17 6l4 4v14a1 1 0 01-1 1h-4" stroke="#aaa" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="sum-text">
+        <div class="sum-title">Catalogs</div>
+        <div class="sum-sub">Editorial · Brand manuals · PDF</div>
+      </div>
+      <svg class="sum-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c9a87c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section id="about" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">01 — Introduction</p>
+      <div class="project-num">01.</div>
+      <h2 class="project-title">About<br/>me.</h2>
+    </div>
+    <p class="section-desc">Graphic and web designer with over 15 years creating visual identities that connect brands with their audiences.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-img-block">
+      <img src="logos/nacho.jpg" alt="Patricia Fierro" style="object-position:center top;"/>
+      <span class="about-intro-label">Introduction</span>
+    </div>
+    <div class="about-text-block">
+      <p>I'm Patricia Fierro, a graphic and web designer based in Buenos Aires, Argentina. With over 15 years of experience in visual design, I have worked with brands in Venezuela and Argentina, creating pieces that communicate clearly and generate impact.</p>
+      <p>My expertise spans from developing complete visual identities and editorial materials to designing web experiences, social media content, and audiovisual production. I combine technical precision with a creative sensibility built across agencies, studios, and independent work.</p>
+      <p>I work remotely with international clients, adapting each project to the brand's goals and market needs.</p>
+      <div class="about-skills">
+        <span class="skill-tag">Adobe Photoshop</span>
+        <span class="skill-tag">Illustrator</span>
+        <span class="skill-tag">InDesign</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Webflow</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">HubSpot</span>
+        <span class="skill-tag">Branding</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LOGOS ═══════════════════ -->
+<section id="logos" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">02 — Visual Identity</p>
+      <div class="project-num">02.</div>
+      <h2 class="project-title">Logos &amp;<br/>Branding.</h2>
+    </div>
+    <p class="section-desc">Visual identities developed for brands across different industries. Each logo communicates the unique essence of its brand.</p>
+  </div>
+
+  <div class="logos-grid" id="logoGallery">
+    <div class="logo-cell" data-src="logos/bambini.jpg"><img src="logos/bambini.jpg" alt="Bambini"/></div>
+    <div class="logo-cell" data-src="logos/CINEMARKETER.png"><img src="logos/CINEMARKETER.png" alt="Cinemarketer"/></div>
+    <div class="logo-cell" data-src="logos/mg%20sonido.jpg"><img src="logos/mg%20sonido.jpg" alt="MG Sonido"/></div>
+    <div class="logo-cell" data-src="logos/cafe%20bar%20soul.jpg"><img src="logos/cafe%20bar%20soul.jpg" alt="Cafe Bar Soul"/></div>
+    <div class="logo-cell" data-src="logos/black%20tech%20cintas.jpg"><img src="logos/black%20tech%20cintas.jpg" alt="Black Tech Cintas"/></div>
+    <div class="logo-cell" data-src="logos/cejas.jpg"><img src="logos/cejas.jpg" alt="Cejas"/></div>
+    <div class="logo-cell" data-src="logos/fresh%20and%20cold.jpg"><img src="logos/fresh%20and%20cold.jpg" alt="Fresh and Cold"/></div>
+    <div class="logo-cell" data-src="logos/grupo%20romaco.jpg"><img src="logos/grupo%20romaco.jpg" alt="Grupo Romaco"/></div>
+    <div class="logo-cell" data-src="logos/lab.jpg"><img src="logos/lab.jpg" alt="Lab"/></div>
+    <div class="logo-cell" data-src="logos/nacho.jpg"><img src="logos/nacho.jpg" alt="Nacho"/></div>
+    <div class="logo-cell" data-src="logos/logo%20(1).jpg"><img src="logos/logo%20(1).jpg" alt="Logo 1"/></div>
+    <div class="logo-cell" data-src="logos/logo%20(2).jpg"><img src="logos/logo%20(2).jpg" alt="Logo 2"/></div>
+    <div class="logo-cell" data-src="logos/Shakti%20Logo_Brandboard-19.png"><img src="logos/Shakti%20Logo_Brandboard-19.png" alt="Shakti"/></div>
+    <div class="logo-cell" data-src="logos/Gemini_Generated_Image_kig4f6kig4f6kig4.png"><img src="logos/Gemini_Generated_Image_kig4f6kig4f6kig4.png" alt="Gemini"/></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SOCIAL MEDIA ═══════════════════ -->
+<section id="social" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">03 — Digital Content</p>
+      <div class="project-num">03.</div>
+      <h2 class="project-title">Social<br/>Media.</h2>
+    </div>
+    <p class="section-desc">Visual content for Instagram, LinkedIn and other platforms. Design aligned with brand strategy and communication goals.</p>
+  </div>
+
+  <div class="social-grid" id="socialGallery">
+    <div class="social-cell span2" data-src="social%20media%20posts/redes%20sociales%20pack%201.png">
+      <img src="social%20media%20posts/redes%20sociales%20pack%201.png" alt="Pack redes 1"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210158.png">
+      <img src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210158.png" alt="Social post"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210209.png">
+      <img src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210209.png" alt="Social post"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/redes%20sociales%20pack%202.png">
+      <img src="social%20media%20posts/redes%20sociales%20pack%202.png" alt="Pack redes 2"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210221.png">
+      <img src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210221.png" alt="Social post"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210241.png">
+      <img src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210241.png" alt="Social post"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210255.png">
+      <img src="social%20media%20posts/Captura%20de%20pantalla%202026-02-25%20210255.png" alt="Social post"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/El%20proposito%20del%20alma%20-%20Online_.jpg">
+      <img src="social%20media%20posts/El%20proposito%20del%20alma%20-%20Online_.jpg" alt="El propósito del alma"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%201.jpg">
+      <img src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%201.jpg" alt="LinkedIn español 1"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%202.jpg">
+      <img src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%202.jpg" alt="LinkedIn español 2"/>
+    </div>
+    <div class="social-cell" data-src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%203.jpg">
+      <img src="social%20media%20posts/Linked%20In%20en%20espa%C3%B1ol%203.jpg" alt="LinkedIn español 3"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ INFOGRAPHICS ═══════════════════ -->
+<section id="infographics" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">04 — Data Visualization</p>
+      <div class="project-num">04.</div>
+      <h2 class="project-title">Info<br/>graphics.</h2>
+    </div>
+    <p class="section-desc">Complex information designed in a clear and visually compelling way for different platforms and audiences.</p>
+  </div>
+
+  <div class="infog-grid" id="infogGallery">
+    <div class="infog-cell" data-src="infopraphics/Infograf%C3%ADa%20GUSHMI.A.jpg">
+      <img src="infopraphics/Infograf%C3%ADa%20GUSHMI.A.jpg" alt="Infografía GUSHMI"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Infograf%C3%ADa%2C%20The%20Secret%20is%20in%20Our%20Sauce.jpg">
+      <img src="infopraphics/Infograf%C3%ADa%2C%20The%20Secret%20is%20in%20Our%20Sauce.jpg" alt="The Secret is in Our Sauce"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Instagram%20and%20Linkedin%20post%20-%201.jpg">
+      <img src="infopraphics/Instagram%20and%20Linkedin%20post%20-%201.jpg" alt="Post 1"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Instagram%20and%20Linkedin%20post%20-%202.jpg">
+      <img src="infopraphics/Instagram%20and%20Linkedin%20post%20-%202.jpg" alt="Post 2"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Instagram%20and%20Linkedin%20post%20-%203.jpg">
+      <img src="infopraphics/Instagram%20and%20Linkedin%20post%20-%203.jpg" alt="Post 3"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Instagram%20and%20Linkedin%20post%20-%204.jpg">
+      <img src="infopraphics/Instagram%20and%20Linkedin%20post%20-%204.jpg" alt="Post 4"/>
+    </div>
+    <div class="infog-cell" data-src="infopraphics/Instagram%20post%20-%20All%20products.jpg">
+      <img src="infopraphics/Instagram%20post%20-%20All%20products.jpg" alt="All products"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WEB DESIGN ═══════════════════ -->
+<section id="web" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">05 — UI / Digital Design</p>
+      <div class="project-num">05.</div>
+      <h2 class="project-title">Web<br/>Design.</h2>
+    </div>
+    <p class="section-desc">Websites, landing pages and digital experiences. Functional design aesthetically consistent with each brand's identity.</p>
+  </div>
+
+  <div class="web-grid" id="webGallery">
+    <div class="web-cell" data-src="web%20design/web%20design.jpg">
+      <img src="web%20design/web%20design.jpg" alt="Web design"/>
+    </div>
+    <div class="web-cell" data-src="web%20design/web%20design1.jpg">
+      <img src="web%20design/web%20design1.jpg" alt="Web design 1"/>
+    </div>
+    <div class="web-cell" data-src="web%20design/web%20design2.jpg">
+      <img src="web%20design/web%20design2.jpg" alt="Web design 2"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ REELS & VIDEO ═══════════════════ -->
+<section id="reels" class="section-wrap">
+  <div class="section-header">
+    <div>
+      <p class="project-label">06 — Motion / Audiovisual</p>
+      <div class="project-num">06.</div>
+      <h2 class="project-title">Reels &amp;<br/>Video.</h2>
+    </div>
+    <p class="section-desc">Short-form audiovisual content for social media. Editing, animation and motion design for brands.</p>
+  </div>
+
+  <!-- Main brand video -->
+  <div class="main-video-wrap">
+    <video autoplay muted loop playsinline>
+      <source src="video/Welcome%20to%20the%20SWT%20Network.mp4" type="video/mp4"/>
+    </video>
+    <span class="video-label">Welcome to the SWT Network — Brand Video</span>
+  </div>
+
+  <!-- Reels grid -->
+  <div class="reels-grid" style="margin-top:2px;">
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/A-%20Looking%20to%20maximize%20your%20excavator%27s%20power.mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/B-%20Looking%20to%20maximize%20your%20excavator%27s%20power.mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/C%20-%20Looking%20to%20maximize%20your%20excavator%27s%20power.mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/Copia%20de%20Copia%20de%20los%20tornillos%20(1).mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/Copia%20de%20SERVICIOS%20DE%20ALTA%20CALIDAD%20AL%20MEJOR%20PRECIO.mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reel-cell">
+      <video autoplay muted loop playsinline>
+        <source src="social%20media%20reels/Reel%20de%20Instagram%20Recordatorio%20de%20U%C3%B1as%20Minimalista%20Gris%20Blanco.mp4" type="video/mp4"/>
+      </video>
+      <div class="reel-play-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M13 11l9 5-9 5V11z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CATALOGS ═══════════════════ -->
+<section id="catalogs" class="section-wrap" style="background:var(--soft);">
+  <div class="section-header">
+    <div>
+      <p class="project-label">07 — Editorial / Print</p>
+      <div class="project-num">07.</div>
+      <h2 class="project-title">Catalogs<br/>&amp; Manuals.</h2>
+    </div>
+    <p class="section-desc">Editorial design of product catalogs, brand manuals and corporate presentations in PDF format.</p>
+  </div>
+
+  <div class="catalogs-grid">
+
+    <a class="catalog-card" href="catalogs/Catalogo_La%20Fiesta.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">La Fiesta Catalog</div>
+        <div class="cat-type">Product catalog</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+    <a class="catalog-card" href="catalogs/Cat%C3%A1logo%20CorpoSteel.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">CorpoSteel Catalog</div>
+        <div class="cat-type">Industrial catalog</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+    <a class="catalog-card" href="catalogs/Cr%C3%B3nicas%20Navales.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">Naval Chronicles</div>
+        <div class="cat-type">Editorial design</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+    <a class="catalog-card" href="catalogs/Dealer%20proposition.%20Propuesta%20distribuidores.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">Dealer Proposition</div>
+        <div class="cat-type">Commercial proposal</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+    <a class="catalog-card" href="catalogs/Manual%20de%20Marca%20-%20%20Arquiskin%20-%20Cronoskin%20y%20Artistskin%20-%20Medios%20Digitales.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">Brand Manual — Arquiskin</div>
+        <div class="cat-type">Brand book · Digital media</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+    <a class="catalog-card" href="catalogs/SWT%20Master_Manual_EN.pdf" target="_blank">
+      <div>
+        <svg class="cat-icon" viewBox="0 0 40 48" fill="none">
+          <rect x="1" y="1" width="28" height="42" rx="2" stroke="#999" stroke-width="1.5"/>
+          <path d="M7 13h14M7 19h14M7 25h9" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M29 10l10 10v26a2 2 0 01-2 2h-8" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="cat-name">SWT Master Manual</div>
+        <div class="cat-type">Brand manual · English</div>
+      </div>
+      <div class="cat-arrow">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#c9a87c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="project-label">08 — Contact</p>
+      <div class="project-num">08.</div>
+      <h2 class="project-title">Let's talk<br/>about your<br/>project.</h2>
+      <div class="contact-list">
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <span class="contact-val">pjfb2101@gmail.com</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <span class="contact-val">+5491158682241</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Location</span>
+          <span class="contact-val">Buenos Aires, Argentina</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Availability</span>
+          <span class="contact-val">Remote · Freelance</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row-2">
+        <div class="form-field">
+          <label>Name</label>
+          <input type="text" placeholder="Your name"/>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@email.com"/>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Project type</label>
+        <input type="text" placeholder="Branding, web, social media..."/>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea rows="5" placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-send" type="submit">
+        Send message
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <span class="footer-name">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 171 165">
+      <path d="M23.97,147.35V36.23s104.74,18.15,109.76,21.06c5.02,2.92,8.88,6.91,11.58,11.99,2.7,5.08,4.05,10.86,4.05,17.33s-1.35,12.42-4.05,17.49c-2.7,5.08-6.53,9.07-11.5,11.99-4.96,2.91-10.96,4.37-17.98,4.37l-77.6-16.69v43.57h-14.26ZM38.23,91.46l74.52,16.69c7.24,0,12.75-1.96,16.52-5.91,3.78-3.94,5.67-9.1,5.67-15.47,0-4.32-.89-8.1-2.67-11.34-1.78-3.24-4.32-5.77-7.61-7.61-3.3-1.84-86.43-15.22-86.43-15.22v38.86Z"/>
+      <path d="M23.97,147.35V36.23l110.96-28.23v14.16l-96.71,26.22v36.77l65.43-20.55v12.15l-65.43,20.55v50.05h-14.26Z"/>
+    </svg>
+  </span>
+  <span class="footer-mid">© 2025 · Graphic &amp; Web Designer · Buenos Aires, Argentina</span>
+  <div class="footer-socials">
+    <a href="#" aria-label="Behance">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 4h5c1.4 0 2.5.8 2.5 2.1S7.4 8 6 8H1V4z" stroke="#888" stroke-width="1"/>
+        <path d="M1 8h5.5c1.4 0 2.5.9 2.5 2.1S7.9 12 6.5 12H1V8z" stroke="#888" stroke-width="1"/>
+        <path d="M9.5 4.5h3.5M9.5 6.5c0-1.1.8-2 1.8-2s1.7.9 1.7 2H9.5z" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+        <path d="M9.5 6.5c0 1.1.8 2 1.8 2a1.8 1.8 0 001.2-.5" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="LinkedIn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="1" width="12" height="12" rx="2" stroke="#888" stroke-width="1"/>
+        <path d="M3.5 6v4M3.5 4.5V5" stroke="#888" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M6 10V8c0-1.1.8-2 1.8-2S9.5 6.9 9.5 8v2" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+        <path d="M6 6v4" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="1.5" y="1.5" width="11" height="11" rx="3" stroke="#888" stroke-width="1"/>
+        <circle cx="7" cy="7" r="2.5" stroke="#888" stroke-width="1"/>
+        <circle cx="10.2" cy="3.8" r="0.6" fill="#888"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <img id="lbImg" src="" alt=""/>
+  <button class="lb-nav lb-next" id="lbNext">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script>
+  // ── Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.nav-ml').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Lightbox
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbClose  = document.getElementById('lbClose');
+  const lbPrev   = document.getElementById('lbPrev');
+  const lbNext   = document.getElementById('lbNext');
+
+  let gallery = [];
+  let current = 0;
+
+  function openLightbox(images, idx) {
+    gallery = images;
+    current = idx;
+    lbImg.src = gallery[current];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 300);
+  }
+
+  function showPrev() { current = (current - 1 + gallery.length) % gallery.length; lbImg.src = gallery[current]; }
+  function showNext() { current = (current + 1) % gallery.length; lbImg.src = gallery[current]; }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+  lb.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+  // Wire up gallery sections
+  function wireGallery(containerSelector) {
+    const cells = document.querySelectorAll(containerSelector + ' [data-src]');
+    const srcs  = Array.from(cells).map(c => c.dataset.src);
+    cells.forEach((cell, i) => {
+      cell.addEventListener('click', () => openLightbox(srcs, i));
+    });
+  }
+
+  wireGallery('#logoGallery');
+  wireGallery('#socialGallery');
+  wireGallery('#infogGallery');
+  wireGallery('#webGallery');
+</script>
+</body>
+</html>
